@@ -1,0 +1,12 @@
+{
+  "welcome-email": {
+    "header": "Welcome to Acme",
+    "hi": "Hi",
+    "thanks": "Thanks for signing up! We're excited to have you on board.",
+    "get-started": "Get Started",
+    "questions": "If you have any questions, reply to this email. We're here to help!"
+  },
+  "confirm-email": {
+    "header": "Confirm your email address"
+  }
+}
