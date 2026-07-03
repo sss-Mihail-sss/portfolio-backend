@@ -74,7 +74,7 @@
     "unicorn/catch-error-name": [
       "error",
       {
-        "name": "err"
+        "name": "error"
       }
     ],
     "unicorn/prefer-optional-catch-binding": "error",
