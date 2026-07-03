@@ -19,7 +19,7 @@ import { Fonts } from "../config/fonts";
 import { theme } from "../config/theme";
 import { initializeTranslator } from "../config/translator";
 
-const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
+import { baseUrl } from "../config/base-url";
 
 interface WelcomeEmailProps {
   companyName: string;

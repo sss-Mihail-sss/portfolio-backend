@@ -1,9 +1,10 @@
 import { pino, stdSerializers } from "pino";
 
-import { env, isDocker, isProduction } from "./env";
+import { env, isDocker, isProduction, isTest } from "./env";
 
 export const logger = pino({
-  level: env.LOG_LEVEL || (isProduction ? "info" : "debug"),
+  // Silent in tests — request/response noise buries actual test output.
+  level: isTest ? "silent" : env.LOG_LEVEL || (isProduction ? "info" : "debug"),
   base: { env: env.NODE_ENV },
   timestamp: pino.stdTimeFunctions.isoTime,
   serializers: {
@@ -26,7 +27,8 @@ export const logger = pino({
     level: (label) => ({ level: label.toUpperCase() }),
   },
   transport:
-    !isProduction && !isDocker
+    // No pino-pretty in tests either — it spawns a worker thread per run.
+    !isProduction && !isDocker && !isTest
       ? {
           target: "pino-pretty",
           options: {

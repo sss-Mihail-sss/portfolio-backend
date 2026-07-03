@@ -1,8 +1,7 @@
 import React from "react";
 import { Img, Section } from "react-email";
 
-// oxlint-disable-next-line node/no-process-env -- react-email preview convention, same as templates
-const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
+import { baseUrl } from "../config/base-url";
 
 export function Logo() {
   return (

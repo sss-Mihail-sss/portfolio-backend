@@ -32,6 +32,9 @@ const envSchema = Type.Object({
   RESEND_API_KEY: Type.String(),
   EMAIL_FROM: Type.String(),
   FRONTEND_URL: Type.String(),
+  // Public origin of THIS backend (e.g. https://api.example.com) — used for
+  // absolute asset URLs in emails. Optional so dev boots without it.
+  PUBLIC_URL: Type.Optional(Type.String()),
 });
 
 // process.env values are all strings — Convert coerces "3000"/"true" into
@@ -40,4 +43,6 @@ const envSchema = Type.Object({
 export const env = Value.Parse(envSchema, Value.Convert(envSchema, { ...process.env }));
 
 export const isProduction = env.NODE_ENV === "production";
+// bun test forces NODE_ENV=test, overriding .env
+export const isTest = env.NODE_ENV === "test";
 export const isDocker = env.DOCKER || env.KUBERNETES_SERVICE_HOST !== undefined;
